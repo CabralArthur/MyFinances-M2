@@ -11,6 +11,9 @@ export const GlobalStyle = createGlobalStyle`
         --text-body: #969cb3;
 
         --shape: #ffffff;
+
+        --red: #e52e4d;
+        --green: #33cc95;
     }
     
     //Reset CSS
