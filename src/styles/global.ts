@@ -15,7 +15,6 @@ export const GlobalStyle = createGlobalStyle`
         --red: #e52e4d;
         --green: #33cc95;
     }
-    
     //Reset CSS
     *{
         margin: 0;
@@ -59,5 +58,28 @@ export const GlobalStyle = createGlobalStyle`
     [disabled]{
         opacity: 0.6;
         cursor: not-allowed;
+    }
+
+    .react-modal-overlay{
+        background: rgba(0,0,0,0.5);
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .react-modal-content{
+        width: 100%;
+        max-width: 576px;
+        background-color: var(--background);
+        padding: 3rem;
+        position: relative;
+        border-radius: 0.25rem;
     }
 `
