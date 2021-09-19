@@ -1,8 +1,10 @@
 import { FormEvent, useState } from 'react'
 import Modal from 'react-modal'
-import incomeImg from '../../assets/img/entradasSvg.svg'
+
+import CloseButtonImg from '../../assets/img/CloseSvg.svg'
 import outcomeImg from '../../assets/img/saidasSvg.svg'
-import { api } from '../../services/api'
+import incomeImg from '../../assets/img/entradasSvg.svg'
+import { useTransactions } from '../../hooks/useTransactions'
 
 import { Container, TransactionTypeContainer, RadioBox } from './styles'
 
@@ -12,24 +14,30 @@ interface NewTransationModalProps {
 }
 
 export function NewTransationModal({ isOpen, onRequestClose }: NewTransationModalProps) {
+    const { createTransaction } = useTransactions();
 
-    const [value, setValue] = useState(0);
+    const [amount, setAmount] = useState(0);
     const [title,setTitle] = useState('');
     const [category,setCategory] = useState('');
 
     const [type, setType] = useState('deposit');
     
-    function handleCreateNewTransaction(event: FormEvent){
+    async function handleCreateNewTransaction(event: FormEvent){
         event.preventDefault(); //Previnir o funcionamento padrão do html
         
-        const data = ({
+        await createTransaction({
             title,
+            amount,
             category,
-            value,
             type
         })
+        
+        setTitle('')
+        setAmount(0)
+        setCategory('')
+        setType('deposit')
 
-        api.post('transactions', data)
+        onRequestClose()
     }
 
     return (
@@ -40,7 +48,13 @@ export function NewTransationModal({ isOpen, onRequestClose }: NewTransationModa
             className='react-modal-content'>
 
             <Container onSubmit={handleCreateNewTransaction}>
-                <h2>Cadastrar Transação</h2>
+
+                <header>
+                    <h2>Cadastrar Transação</h2>
+                    <img src={CloseButtonImg} alt="Fechar" onClick={onRequestClose} />
+                </header>
+
+
                 <input
                     placeholder="Título"
                     value={title}
@@ -50,8 +64,8 @@ export function NewTransationModal({ isOpen, onRequestClose }: NewTransationModa
                 <input
                     type="number"
                     placeholder="Valor"
-                    value={value}
-                    onChange={event => setValue(Number(event.target.value))}
+                    value={amount}
+                    onChange={event => setAmount(Number(event.target.value))}
                 />
                 
                 <TransactionTypeContainer>

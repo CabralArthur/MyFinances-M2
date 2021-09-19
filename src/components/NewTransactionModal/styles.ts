@@ -2,10 +2,27 @@ import styled from "styled-components";
 import { darken, transparentize } from 'polished';
 
 export const Container = styled.form`
-    h2{
-        color: var(--text-title);
-        font-size:1.5rem;
-        margin-bottom: 2rem;
+
+    header{
+        display: flex;
+        padding-bottom: 1rem;
+        margin-bottom: .5rem;
+        align-items: center;
+        justify-content: space-between;
+
+        h2{
+            color: var(--text-title);
+            font-size:1.5rem;
+        }
+
+        img{
+            width: 50px;
+            height: 50px;
+            &:hover{
+                cursor: pointer;
+                filter: brightness(0.9);
+            }
+        }
     }
 
     input{
