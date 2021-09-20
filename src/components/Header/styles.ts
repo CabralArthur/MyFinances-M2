@@ -20,8 +20,8 @@ export const Content = styled.div`
 
         background-color: var(--orange);
         height:3rem;
-        padding: 0 2rem;
-        
+        padding: 0 1.5rem;
+
         border: 0;
         border-radius: 0.25rem;
 

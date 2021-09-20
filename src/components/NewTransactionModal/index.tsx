@@ -45,7 +45,13 @@ export function NewTransationModal({ isOpen, onRequestClose }: NewTransationModa
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             overlayClassName='react-modal-overlay'
-            className='react-modal-content'>
+            className='react-modal-content'
+            style={{
+                content: {
+                  margin: '1rem',
+                }
+              }}
+            >
 
             <Container onSubmit={handleCreateNewTransaction}>
 
